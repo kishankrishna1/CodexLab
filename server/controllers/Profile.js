@@ -84,7 +84,7 @@ exports.deleteAccount  = async (req, res) => {
         for (const courseId of userDetails.courses) {
           await Course.findByIdAndUpdate(
             courseId,
-            { $pull: { studentsEnroled: id } },
+            { $pull: { studentsEnrolled: id } },
             { new: true }
           )
         }
@@ -229,7 +229,7 @@ exports.instructorDashboard = async (req, res) => {
     const courseDetails = await Course.find({ instructor: req.user.id })
 
     const courseData = courseDetails.map((course) => {
-      const totalStudentsEnrolled = course.studentsEnroled.length
+      const totalStudentsEnrolled = course.studentsEnrolled.length
       const totalAmountGenerated = totalStudentsEnrolled * course.price
 
       // Create a new object with the additional fields
@@ -237,7 +237,6 @@ exports.instructorDashboard = async (req, res) => {
         _id: course._id,
         courseName: course.courseName,
         courseDescription: course.courseDescription,
-        // Include other course properties as needed
         totalStudentsEnrolled,
         totalAmountGenerated,
       }
@@ -250,4 +249,4 @@ exports.instructorDashboard = async (req, res) => {
     console.error(error)
     res.status(500).json({ message: "Server Error" })
   }
-}
+};

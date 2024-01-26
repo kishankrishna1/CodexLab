@@ -118,7 +118,7 @@ exports.createCourse = async (req, res) => {
 exports.getAllCourses = async (req, res) => {
     try{
         const allCourses = await Course.find(
-            {}, 
+            {status: "Published"}, 
             {
                 courseName:true,
                 price:true,
@@ -441,8 +441,8 @@ exports.deleteCourse = async (req, res) => {
       }
   
       // Unenroll students from the course
-      const studentsEnroled = course.studentsEnroled
-      for (const studentId of studentsEnroled) {
+      const studentsEnrolled = course.studentsEnrolled
+      for (const studentId of studentsEnrolled) {
         await User.findByIdAndUpdate(studentId, {
           $pull: { courses: courseId },
         })

@@ -85,7 +85,7 @@ const Instructor = () => {
                             <div>
                                 <p>{course.courseName}</p>
                                 <div>
-                                    <p>{course.studentsEnroled.length} students</p>
+                                    <p>{course.studentsEnrolled.length} students</p>
                                     <p> | </p>
                                     <p> Rs {course.price}</p>
                                 </div>

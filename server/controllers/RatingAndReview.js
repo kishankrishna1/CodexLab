@@ -14,7 +14,7 @@ exports.createRating = async (req, res) => {
         // check if user is enrolled or not
         const courseDetails = await Course.findOne(
             {_id:courseId,
-            studentsEnroled: {$eleMatch: {$eq: userId}},
+            studentsEnrolled: {$eleMatch: {$eq: userId}},
             }
         )
 

@@ -133,6 +133,7 @@ import { resetCart } from "../../slices/cartSlice"
 import { setPaymentLoading } from "../../slices/courseSlice"
 import { apiConnector } from "../apiconnector"
 import { studentEndpoints } from "../apis"
+// require('dotenv').config();
 
 const {
   COURSE_PAYMENT_API,
@@ -190,11 +191,13 @@ export async function BuyCourse(
     if (!orderResponse.data.success) {
       throw new Error(orderResponse.data.message)
     }
-    console.log("PAYMENT RESPONSE FROM BACKEND............", orderResponse.data)
+    // console.log("PAYMENT RESPONSE FROM BACKEND............", orderResponse)
 
     // Opening the Razorpay SDK
+    // console.log("key-",process.env.REACT_APP_RAZORPAY_KEY);
     const options = {
-      key: process.env.RAZORPAY_KEY,
+      key: process.env.REACT_APP_RAZORPAY_KEY,
+
       currency: orderResponse.data.data.currency,
       amount: `${orderResponse.data.data.amount}`,
       order_id: orderResponse.data.data.id,
@@ -210,7 +213,9 @@ export async function BuyCourse(
         verifyPayment({ ...response, courses }, token, navigate, dispatch)
       },
     }
+    // console.log("OPTIONS............", options)
     const paymentObject = new window.Razorpay(options)
+    // console.log("PAYMENT OBJECT............", paymentObject);
 
     paymentObject.open()
     paymentObject.on("payment.failed", function (response) {
