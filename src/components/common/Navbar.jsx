@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai"
+import { AiOutlineShoppingCart } from "react-icons/ai"
 import { BsChevronDown } from "react-icons/bs"
 import { useSelector } from "react-redux"
 import { Link, matchPath, useLocation } from "react-router-dom"
@@ -19,6 +19,7 @@ function Navbar() {
 
   const [subLinks, setSubLinks] = useState([])
   const [loading, setLoading] = useState(false)
+  
 
   useEffect(() => {
     ;(async () => {
@@ -34,13 +35,6 @@ function Navbar() {
     })()
   }, [])
 
-  // console.log("sub links", subLinks)
-  // function printSubLinks() {
-  //   return subLinks.map((subLink, i) => (
-  //     console.log(i, " -", subLink.name)
-  //   ))
-  // }
-  // printSubLinks();
 
   const matchRoute = (route) => {
     return matchPath({ path: route }, location.pathname)
@@ -48,17 +42,17 @@ function Navbar() {
 
   return (
     <div
-      className={`flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700 ${
+      className={`flex items-center justify-center border-b-[1px] border-b-richblack-700 ${
         location.pathname !== "/" ? "bg-richblack-800" : ""
       } transition-all duration-200`}
     >
-      <div className="flex w-11/12 max-w-maxContent items-center justify-between">
+      <div className="flex  w-11/12 max-w-maxContent items-center justify-between flex-wrap ml-2 gap-2 ">
         {/* Logo */}
         <Link to="/">
           <img src={logo} alt="Logo" width={160} height={32} loading="lazy" />
         </Link>
         {/* Navigation links */}
-        <nav className="hidden md:block">
+        <nav className={` sm:block `}>
           <ul className="flex gap-x-6 text-richblack-25">
             {NavbarLinks.map((link, index) => (
               <li key={index}>
@@ -80,9 +74,9 @@ function Navbar() {
                         ) : subLinks.length ? (
                           <>
                             {subLinks
-                              // ?.filter(
-                              //   (subLink) => subLink?.courses?.length > 0
-                              // )
+                              ?.filter(
+                                (subLink) => subLink?.courses?.length > 0
+                              )
                               ?.map((subLink, i) => (
                                 <Link
                                   to={`/catalog/${subLink.name
@@ -119,6 +113,7 @@ function Navbar() {
             ))}
           </ul>
         </nav>
+
         {/* Login / Signup / Dashboard */}
         <div className="hidden items-center gap-x-4 md:flex">
           {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
@@ -147,9 +142,9 @@ function Navbar() {
           )}
           {token !== null && <ProfileDropdown />}
         </div>
-        <button className="mr-4 md:hidden">
-          <AiOutlineMenu fontSize={24} fill="#AFB2BF" />
-        </button>
+        {/* <button className="mr-4 sm:hidden">
+          <AiOutlineMenu fontSize={24} fill="#AFB2BF" onClick={handleShowNavbar} />
+        </button> */}
       </div>
     </div>
   )

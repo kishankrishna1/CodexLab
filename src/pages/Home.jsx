@@ -1,6 +1,7 @@
 import React from 'react'
 import {FaArrowRight} from "react-icons/fa"
 import {Link} from "react-router-dom"
+import { useSelector } from "react-redux"
 import HighlightText from '../components/core/HomePage/HighlightText'
 
 import CTAButton from "../components/core/HomePage/Button"
@@ -11,9 +12,12 @@ import LearningLanguageSection from '../components/core/HomePage/LearningLanguag
 import InstructorSection from '../components/core/HomePage/InstructorSection'
 import Footer from '../components/common/Footer'
 import ExploreMore from '../components/core/HomePage/ExploreMore'
+import { CgProfile } from "react-icons/cg";
+
 // import ReviewSlider from '../components/common/ReviewSlider'
 
 const Home = () => {
+    const { token } = useSelector((state) => state.auth)
   return (
     <div>
       {/*Section1  */}
@@ -29,8 +33,25 @@ const Home = () => {
                     <FaArrowRight />
                 </div>
             </div>
-
         </Link>
+
+        <div className="md:hidden" >
+            <Link to={"/login"} >
+                <div className=' group mt-5 p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-200
+                    transition-all duration-200 hover:scale-95 w-fit'>
+                        <div className='flex flex-row items-center gap-2 rounded-full px-10 py-[5px]
+                        transition-all duration-200 group-hover:bg-richblack-900'>
+                        {token ? ( <div className='flex items-center gap-2' >
+                            <p>Dashboard </p>
+                            <CgProfile /> 
+                        </div>
+                        
+                        
+                        ) : <p>Login</p>}
+                    </div>
+                </div>
+            </Link>
+        </div>
 
         <div className='text-center text-4xl font-semibold mt-7'>
             Empower Your Future with
@@ -169,7 +190,7 @@ const Home = () => {
                     </div>
                     <div className="flex flex-col items-start gap-10 lg:w-[40%]">
                         <div className="text-[16px]">
-                            The modern StudyNotion is the dictates its own terms. Today, to
+                            The modern CodexLab is the dictates its own terms. Today, to
                             be a competitive specialist requires more than professional
                             skills.
                         </div>
