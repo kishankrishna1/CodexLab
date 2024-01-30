@@ -17,12 +17,12 @@ export default function MyProfile() {
       </h1>
 
       {/* section-1 */}
-      <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
+      <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-1 sm:px-12">
         <div className="flex items-center gap-x-4">
           <img
             src={user?.image}
             alt={`profile-${user?.firstName}`}
-            className="aspect-square w-[78px] rounded-full object-cover"
+            className="aspect-square max-w-[78px] w-[15vw] rounded-full object-cover"
           />
           <div className="space-y-1">
             <p className="text-lg font-semibold text-richblack-5">
@@ -31,7 +31,8 @@ export default function MyProfile() {
             <p className="text-sm text-richblack-300">{user?.email}</p>
           </div>
         </div>
-        <IconBtn
+       <div className="relative bottom-5 right-10 translate-x-0 " >
+       <IconBtn
           text="Edit"
           onclick={() => {
             navigate("/dashboard/settings")
@@ -39,10 +40,11 @@ export default function MyProfile() {
         >
           <RiEditBoxLine />
         </IconBtn>
+       </div>
       </div>
 
       {/* section-2 */}
-      <div className="my-10 flex flex-col gap-y-10 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
+      <div className="my-10 flex flex-col gap-y-10 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8  px-1 sm:px-12">
         <div className="flex w-full items-center justify-between">
           <p className="text-lg font-semibold text-richblack-5">About</p>
           <IconBtn
@@ -66,7 +68,7 @@ export default function MyProfile() {
       </div>
 
       {/* Section-3 */}
-      <div className="my-10 flex flex-col gap-y-10 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
+      <div className="my-10 flex flex-col gap-y-10 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8  px-1 sm:px-12">
         <div className="flex w-full items-center justify-between">
           <p className="text-lg font-semibold text-richblack-5">
             Personal Details

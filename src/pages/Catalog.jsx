@@ -56,7 +56,7 @@ const Catalog = () => {
         )
       }
       if (!loading && !catalogPageData.success) {
-        // return <Error />
+        return <Error />
       }
     
       return (

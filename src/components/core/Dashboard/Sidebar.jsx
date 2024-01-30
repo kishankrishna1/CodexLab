@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { VscSignOut } from "react-icons/vsc"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
@@ -7,6 +7,11 @@ import { sidebarLinks } from "../../../data/dashboard-links"
 import { logout } from "../../../services/operations/authAPI"
 import ConfirmationModal from "../../common/ConfirmationModal"
 import SidebarLink from "./SidebarLink"
+import { GiHamburgerMenu } from "react-icons/gi";
+import { RxCross2 } from "react-icons/rx";
+{/* <RxCross2 /> */}
+{/* <GiHamburgerMenu /> */}
+
 
 export default function Sidebar() {
   const { user, loading: profileLoading } = useSelector(
@@ -17,6 +22,20 @@ export default function Sidebar() {
   const navigate = useNavigate()
   // to keep track of confirmation modal
   const [confirmationModal, setConfirmationModal] = useState(null)
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const url = window.location.pathname.split('/').pop()
+
+  useEffect(() => {  
+      if(window.innerWidth<=639){
+        setSidebarOpen(true);
+      }
+  }, [url]);
+
+  const handlesidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  }
+  
+  console.log("sidebar:-",sidebarOpen);
 
   if (profileLoading || authLoading) {
     return (
@@ -28,7 +47,8 @@ export default function Sidebar() {
 
   return (
     <>
-      <div className="flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10">
+      <button className="flex sm:hidden absolute text-richblack-300 mt-4 ml-1 text-lg " onClick={handlesidebar} > {sidebarOpen? (<GiHamburgerMenu />) : (<RxCross2 />) } </button>
+      <div className={`flex  ${sidebarOpen && 'hidden'}  h-[calc(100vh-3.5rem)] min-w-[calc(100vw-80vw)] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10`}>
         <div className="flex flex-col">
           {sidebarLinks.map((link) => {
             if (link.type && user?.accountType !== link.type) return null
