@@ -21,7 +21,7 @@ export function getUserDetails(token, navigate) {
       const response = await apiConnector("GET", GET_USER_DETAILS_API, null, {
         Authorization: `Bearer ${token}`,
       })
-      console.log("GET_USER_DETAILS API RESPONSE............", response)
+      // console.log("GET_USER_DETAILS API RESPONSE............", response)
 
       if (!response.data.success) {
         throw new Error(response.data.message)
@@ -76,7 +76,7 @@ export async function getInstructorData(token) {
     const response = await apiConnector("GET", GET_INSTRUCTOR_DATA_API, null, {
       Authorization: `Bearer ${token}`,
     })
-    console.log("GET_INSTRUCTOR_DATA_API API RESPONSE............", response)
+    // console.log("GET_INSTRUCTOR_DATA_API API RESPONSE............", response)
     result = response?.data?.courses
   } catch (error) {
     console.log("GET_INSTRUCTOR_DATA_API API ERROR............", error)

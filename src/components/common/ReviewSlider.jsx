@@ -47,7 +47,7 @@ function ReviewSlider() {
     })()
   }, [])
 
-  console.log("This is my reviews:-",reviews)
+  // console.log("This is my reviews:-",reviews)
 
   return (
     <div className="text-white">

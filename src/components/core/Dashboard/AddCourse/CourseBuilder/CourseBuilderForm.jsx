@@ -34,7 +34,6 @@ export default function CourseBuilderForm() {
   // handle form submission
   const onSubmit = async (data) => {
 
-    // console.log("Form-Data 37 = ",data)
     setLoading(true)
 
     let result
@@ -59,7 +58,7 @@ export default function CourseBuilderForm() {
         },
         token
       )
-      console.log("RESULT after creation-", result);
+      // console.log("RESULT after creation-", result);
     }
 
     // console.log("Before the result ");

@@ -110,7 +110,7 @@ export default function SubSectionModal({
     formData.append("title", data.lectureTitle)
     formData.append("description", data.lectureDesc)
     formData.append("video", data.lectureVideo)
-    console.log("Form data-", formData);
+    // console.log("Form data-", formData);
     setLoading(true)
     const result = await createSubSection(formData, token)
     // console.log("RESULT MODAL-", result);

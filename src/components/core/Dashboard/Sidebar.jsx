@@ -35,7 +35,7 @@ export default function Sidebar() {
     setSidebarOpen(!sidebarOpen);
   }
   
-  console.log("sidebar:-",sidebarOpen);
+  // console.log("sidebar:-",sidebarOpen);
 
   if (profileLoading || authLoading) {
     return (

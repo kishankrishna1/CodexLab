@@ -21,7 +21,6 @@ exports.createCategory=async (req, res) =>{
             name:name, 
             description:description
         });
-        console.log(categoryDetails);
 
         // return response
         return res.status(200).json({
@@ -40,7 +39,6 @@ exports.createCategory=async (req, res) =>{
 //------------get All Categorys handler function--------------------
 exports.showAllCategories= async (req, res) =>{
   try {
-    // console.log("INSIDE SHOW ALL CATEGORIES");
     const allCategorys = await Category.find({});
     res.status(200).json({
       success: true,
@@ -59,7 +57,6 @@ exports.showAllCategories= async (req, res) =>{
 exports.categoryPageDetails = async (req, res) => {
     try {
         const { categoryId } = req.body
-        // console.log("PRINTING CATEGORY ID: ", categoryId);
         // Get courses for the specified category
         const selectedCategory = await Category.findById(categoryId)
           .populate({
@@ -69,10 +66,8 @@ exports.categoryPageDetails = async (req, res) => {
           })
           .exec()
     
-        // console.log("SELECTED COURSE", selectedCategory)
         // Handle the case when the category is not found
         if (!selectedCategory) {
-          console.log("Category not found.")
           return res
             .status(404)
             .json({ success: false, message: "Category not found" })

@@ -40,7 +40,7 @@ const VideoDetails = () => {
         const filteredVideoData = filteredData?.[0]?.subSection.filter(
           (data) => data._id === subSectionId
         )
-        console.log("filteredVideoData", filteredVideoData)
+        // console.log("filteredVideoData", filteredVideoData)
         setVideoData(filteredVideoData?.[0])
         setPreviewSource(courseEntireData.thumbnail)
         setVideoEnded(false)
@@ -153,7 +153,7 @@ const VideoDetails = () => {
       token
     )
     if (res) {
-      console.log("RES->", res);
+      // console.log("RES->", res);
       dispatch(updateCompletedLectures(subSectionId))
     }
     setLoading(false)

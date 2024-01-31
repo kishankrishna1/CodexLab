@@ -38,7 +38,7 @@ exports.createCourse = async (req, res) => {
         const instructorDetails = await User.findById(userId,{
             accountType:"Instructor",
         });
-        console.log("Instructor Details:- ", instructorDetails);
+        // console.log("Instructor Details:- ", instructorDetails);
         // TODO:Verify that userId and InstructorDetails._ID are same or different?
 
         if(!instructorDetails){
@@ -237,7 +237,7 @@ exports.getFullCourseDetails = async (req, res) => {
         userId: userId,
       })
   
-      console.log("courseProgressCount : ", courseProgressCount)
+      // console.log("courseProgressCount : ", courseProgressCount)
   
       if (!courseDetails) {
         return res.status(400).json({
@@ -281,58 +281,6 @@ exports.getFullCourseDetails = async (req, res) => {
     }
 }
 
-// -----------Get One Single Course Details------
-// exports.getCourseDetails = async (req, res) => {
-//   try {
-//     const { courseId } = req.body
-//     const courseDetails = await Course.findOne({
-//       _id: courseId,
-//     })
-//       .populate({
-//         path: "instructor",
-//         populate: {
-//           path: "additionalDetails",
-//         },
-//       })
-//       .populate("category")
-//       .populate("ratingAndReviews")
-//       .populate({
-//         path: "courseContent",
-//         populate: {
-//           path: "subSection",
-//         },
-//       })
-//       .exec()
-//     // console.log(
-//     //   "###################################### course details : ",
-//     //   courseDetails,
-//     //   courseId
-//     // );
-//     if (!courseDetails || !courseDetails.length) {
-//       return res.status(400).json({
-//         success: false,
-//         message: `Could not find course with id: ${courseId}`,
-//       })
-//     }
-
-//     if (courseDetails.status === "Draft") {
-//       return res.status(403).json({
-//         success: false,
-//         message: `Accessing a draft course is forbidden`,
-//       })
-//     }
-
-//     return res.status(200).json({
-//       success: true,
-//       data: courseDetails,
-//     })
-//   } catch (error) {
-//     return res.status(500).json({
-//       success: false,
-//       message: error.message,
-//     })
-//   }
-// }
 
 // Edit Course Details
 exports.editCourse = async (req, res) => {

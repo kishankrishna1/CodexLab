@@ -31,7 +31,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
       courseId: course._id,
       token,
     })
-    console.log("RESULT_DATA-", result);
+    // console.log("RESULT_DATA-", result);
     if (result) {
       dispatch(setCourse(result))
     }
@@ -50,7 +50,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
     }
     setConfirmationModal(null)
   }
-  console.log("In nested view course details- ",course )
+  // console.log("In nested view course details- ",course )
 
   return (
     <>

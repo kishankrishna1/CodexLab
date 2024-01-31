@@ -31,7 +31,6 @@ exports.sendotp =  async(req, res) =>{
             lowerCaseAlphabets:false,
             specialChars:false,
         });
-        console.log("OTP generated: ", otp);
  
         //check unique otp or not
         const result = await OTP.findOne({otp:otp});
@@ -50,7 +49,6 @@ exports.sendotp =  async(req, res) =>{
 
         //create an entry for OTP
         const otpBody = await OTP.create(otpPayload);
-        console.log("OTP Body " ,otpBody);
 
         //return response successful
         res.status(200).json({
@@ -110,7 +108,7 @@ exports.signup = async(req, res) =>{
         
         //find the most recent OTP stored for the user
         const recentOtp = await OTP.find({email}).sort({createdAt:-1}).limit(1);
-        console.log(recentOtp);
+
         //validate OTP
         if(recentOtp.length ==0){
             //OTP not found
@@ -240,12 +238,9 @@ exports.login = async (req, res) =>{
 exports.changePassword = async(req, res) =>{
     try{
         // get data from req body
-        console.log("Before")
         const userDetails = await User.findById(req.user.id);
         // get oldPassword, newPassword, confirmPassword
         const {oldPassword, newPassword} = req.body;
-        // console.log("oldPassword ", oldPassword);
-        // console.log("New Password", newPassword);
 
         //validation
         const isPasswordMatch = await bcrypt.compare(

@@ -28,7 +28,7 @@ async function sendVerificationEmail(email, otp){
             "Verification Email from CodexLab", 
             emailTemplate(otp)
         );
-        console.log("Email sent Successfully: ", mailResponse.response);
+        // console.log("Email sent Successfully: ", mailResponse.response);
     }
     catch(error){
         console.log("Error occured while sending mails: ", error);

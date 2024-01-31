@@ -62,11 +62,11 @@ exports.deleteAccount  = async (req, res) => {
     try{
         // get id from req body
         const id = req.user.id;
-        console.log("id=", id);
+        // console.log("id=", id);
 
         // validate the data
         const userDetails = await User.findById(id);
-        console.log("User Details=", userDetails);
+        // console.log("User Details=", userDetails);
         
         if(!userDetails){
             return res.status(404).json({
@@ -113,7 +113,7 @@ exports.getAllUserDetails = async (req, res) => {
 		const userDetails = await User.findById(id)
 			.populate("additionalDetails")
 			.exec();
-		console.log(userDetails);
+		// console.log(userDetails);
 		res.status(200).json({
 			success: true,
 			message: "User Data fetched successfully",
@@ -138,7 +138,7 @@ exports.updateDisplayPicture = async (req, res) => {
         1000,
         1000
       )
-      console.log(image)
+      // console.log(image)
       const updatedProfile = await User.findByIdAndUpdate(
         { _id: userId },
         { image: image.secure_url },

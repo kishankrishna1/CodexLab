@@ -100,7 +100,7 @@ exports.deleteSection = async (req, res) =>{
 			}
 		})
 		const section = await Section.findById(sectionId);
-		console.log(sectionId, courseId);
+		// console.log(sectionId, courseId);
 		if(!section) {
 			return res.status(404).json({
 				success:false,
