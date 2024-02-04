@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
+import { toast } from "react-hot-toast"
 
 import CountryCode from "../../data/countrycode.json"
 import { apiConnector } from "../../services/apiconnector"
@@ -28,9 +29,11 @@ const ContactUsForm = () => {
         contactusEndpoint.CONTACT_US_API,
         data
       )
-      // console.log("Email Res - ", res)
+      console.log("Email Res - ", res)
+      toast.success("Form Submitted")
       setLoading(false)
     } catch (error) {
+      toast.success("Error in submitting form")
       console.log("ERROR MESSAGE - ", error.message)
       setLoading(false)
     }
@@ -47,6 +50,8 @@ const ContactUsForm = () => {
       })
     }
   }, [reset, isSubmitSuccessful])
+
+  
 
   return (
     <form
