@@ -7,10 +7,9 @@ import { sidebarLinks } from "../../../data/dashboard-links"
 import { logout } from "../../../services/operations/authAPI"
 import ConfirmationModal from "../../common/ConfirmationModal"
 import SidebarLink from "./SidebarLink"
-import { GiHamburgerMenu } from "react-icons/gi";
-import { RxCross2 } from "react-icons/rx";
-{/* <RxCross2 /> */}
-{/* <GiHamburgerMenu /> */}
+
+import { ImCross } from "react-icons/im";
+import { IoReorderThreeOutline } from "react-icons/io5";
 
 
 export default function Sidebar() {
@@ -47,7 +46,7 @@ export default function Sidebar() {
 
   return (
     <>
-      <button className="flex sm:hidden absolute text-richblack-300 mt-4 ml-1 text-lg " onClick={handlesidebar} > {sidebarOpen? (<GiHamburgerMenu />) : (<RxCross2 />) } </button>
+      <button className="flex sm:hidden absolute text-richblack-300 mt-3 ml-1 text-lg " onClick={handlesidebar} > {sidebarOpen? (<IoReorderThreeOutline size={35} />) : (<ImCross />) } </button>
       <div className={`flex  ${sidebarOpen && 'hidden'}  h-[calc(100vh-3.5rem)] min-w-[calc(100vw-80vw)] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10`}>
         <div className="flex flex-col">
           {sidebarLinks.map((link) => {

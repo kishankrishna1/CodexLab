@@ -5,13 +5,17 @@ import { useSelector } from "react-redux"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
 
 import IconBtn from "../../common/IconBtn"
+import { ImCross } from "react-icons/im";
+import { IoReorderThreeOutline } from "react-icons/io5";
 
 export default function VideoDetailsSidebar({ setReviewModal }) {
   const [activeStatus, setActiveStatus] = useState("")
   const [videoBarActive, setVideoBarActive] = useState("")
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate()
   const location = useLocation()
   const { sectionId, subSectionId } = useParams()
+  const url = window.location.pathname.split('/').pop()
   const {
     courseSectionData,
     courseEntireData,
@@ -38,31 +42,44 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseSectionData, courseEntireData, location.pathname])
 
+  const handlesidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  }
+  useEffect(() => {  
+    if(window.innerWidth<=900){
+      setSidebarOpen(true);
+    }
+}, [url]);
+
   return (
     <>
-      <div className="flex h-[calc(100vh-3.5rem)] w-[320px] max-w-[350px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800">
+    <button className="flex lg:hidden absolute text-richblack-100 mt-4 ml-1 text-lg " onClick={handlesidebar} > {sidebarOpen? (<IoReorderThreeOutline size={35} />) : (<ImCross />) } </button>
+      <div className={`flex  ${sidebarOpen && 'hidden'}   h-[calc(100vh-3.5rem)] w-[320px] max-w-[350px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800`}>
         <div className="mx-5 flex flex-col items-start justify-between gap-2 gap-y-4 border-b border-richblack-600 py-5 text-lg font-bold text-richblack-25">
           <div className="flex w-full items-center justify-between ">
-            <div
-              onClick={() => {
-                navigate(`/dashboard/enrolled-courses`)
-              }}
-              className="flex h-[35px] w-[35px] items-center justify-center rounded-full bg-richblack-100 p-1 text-richblack-700 hover:scale-90"
-              title="back"
-            >
-              <IoIosArrowBack size={30} />
-            </div>
+            
             <IconBtn
               text="Add Review"
               customClasses="ml-auto"
               onclick={() => setReviewModal(true)}
             />
           </div>
-          <div className="flex flex-col">
-            <p>{courseEntireData?.courseName}</p>
-            <p className="text-sm font-semibold text-richblack-500">
-              {completedLectures?.length} / {totalNoOfLectures}
-            </p>
+          <div className="flex justify-between gap-10 ">
+            <div className="flex flex-col">
+              <p>{courseEntireData?.courseName}</p>
+              <p className="text-sm font-semibold text-richblack-500">
+                {completedLectures?.length} / {totalNoOfLectures}
+              </p>
+            </div>
+            <div
+                onClick={() => {
+                  navigate(`/dashboard/enrolled-courses`)
+                }}
+                className="flex h-[35px] w-[35px] items-center justify-center rounded-full bg-richblack-100 p-1 text-richblack-700 hover:scale-90"
+                title="back"
+              >
+                <IoIosArrowBack size={30} /> 
+            </div>
           </div>
         </div>
 
@@ -79,9 +96,9 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
                   {course?.sectionName}
                 </div>
                 <div className="flex items-center gap-3">
-                  {/* <span className="text-[12px] font-medium">
-                    Lession {course?.subSection.length}
-                  </span> */}
+                  <span className="text-[12px] font-medium">
+                    {course?.subSection.length} videos
+                  </span>
                   <span
                     className={`${
                       activeStatus === course?.sectionName
