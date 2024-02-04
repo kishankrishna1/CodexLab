@@ -108,12 +108,6 @@ const App = () => {
           }
 
         </Route>
-
-        
-            
-
-          
-
         <Route path="*" element={<Error />} />
 
       </Routes>  
