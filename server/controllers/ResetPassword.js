@@ -34,7 +34,7 @@ exports.resetPasswordToken = async (req, res) =>{
 
         // create url 
         // const url = `http://localhost:3000/update-password/${token}`;
-        const url = `https://codex-lab-frontend.vercel.app/update-password/{token}`
+        const url = `https://codex-lab-frontend.vercel.app/update-password/${token}`
 
         // send mail containing the URL
         await mailSender(
